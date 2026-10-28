@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nhóm 3 - Đồ Án Mạng Máy Tính - Tối Ưu Định Tuyến Cáp Quang Biển VN</title>
+    <!-- Tailwind CSS (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- EMBEDDED CSS -->
+    <style>
+        html { scroll-behavior: smooth; }
+        .bg-radial-glow { background: radial-gradient(circle at 50% 20%, rgba(59, 130, 246, 0.18) 0%, rgba(15, 23, 42, 0) 70%); }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0f172a; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #475569; }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-100 font-sans antialiased overflow-x-hidden">
+
+    <!-- HEADER / NAVBAR -->
+    <nav class="fixed top-0 left-0 w-full z-50 bg-slate-900/90 backdrop-blur-md border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-lg bg-blue-600 flex items-center justify-center font-bold text-white text-xl shadow-lg shadow-blue-500/30">
+                        <i class="fa-solid fa-network-wired"></i>
+                    </div>
+                    <div>
+                        <span class="font-bold text-lg tracking-wide text-white block leading-tight">UEH NETWORK - NHÓM 3</span>
+                        <span class="text-xs text-blue-400 font-medium">Đồ Án Mạng Máy Tính</span>
+                    </div>
+                </div>
+                <div class="hidden md:flex space-x-8 text-sm font-medium">
+                    <a href="#tong-quan" class="hover:text-blue-400 transition-colors">Tổng Quan</a>
+                    <a href="#thuc-trang" class="hover:text-blue-400 transition-colors">Thực Trạng</a>
+                    <a href="#giai-phap" class="hover:text-blue-400 transition-colors">Giải Pháp & Sơ Đồ</a>
+                    <a href="#tinh-nang" class="hover:text-blue-400 transition-colors">Tính Năng</a>
+                    <a href="#thanh-vien" class="hover:text-blue-400 transition-colors">Thành Viên Nhóm 3</a>
+                    <a href="#tien-do" class="hover:text-blue-400 transition-colors">Tiến Độ</a>
+                </div>
+                <div>
+                    <a href="#demo" class="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-white text-sm font-semibold transition-all shadow-md shadow-blue-600/30">
+                        Xem Mô Phỏng
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section id="tong-quan" class="relative pt-32 pb-24 md:pt-40 md:pb-32 overflow-hidden min-h-[90vh] flex items-center">
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1600&q=80" alt="Cáp quang biển 3D" class="w-full h-full object-cover object-center opacity-30">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/80 to-slate-900/40"></div>
+            <div class="absolute inset-0 bg-radial-glow opacity-60"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-3xl mx-auto">
+                <span class="inline-block py-1 px-4 rounded-full bg-blue-500/20 border border-blue-400/30 text-blue-300 text-xs font-semibold uppercase tracking-wider mb-4 backdrop-blur-md">
+                    Đồ Án Môn Học - Trường Đại học Kinh tế TP.HCM (UEH) • NHÓM 3
+                </span>
+                <h1 class="text-3xl sm:text-5xl font-extrabold text-white leading-tight mb-6">
+                    Tác Động Của Sự Cố Đứt Cáp Biển & <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-cyan-300 to-indigo-300">Giải Pháp Tối Ưu Định Tuyến</span>
+                </h1>
+                <p class="text-slate-300 text-base sm:text-lg mb-8 leading-relaxed font-normal">
+                    Đồ án nghiên cứu chuyên sâu của **Nhóm 3**. Phân tích tác động thực tiễn của các sự cố gián đoạn cáp quang biển đến Internet Việt Nam và xây dựng mô hình định tuyến tự động chuyển mạch (Failover) trên Cisco Packet Tracer.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="#demo" class="px-6 py-3.5 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white font-semibold text-base shadow-xl shadow-blue-500/25 transition-all flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-play"></i> Thử Nghiệm Mô Phỏng
+                    </a>
+                    <a href="#giai-phap" class="px-6 py-3.5 rounded-xl bg-slate-800/80 hover:bg-slate-700/80 text-slate-200 border border-slate-700 font-semibold text-base backdrop-blur-md transition-all flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-diagram-project"></i> Xem Kiến Trúc Mạng
+                    </a>
+                </div>
+            </div>
+
+            <!-- QUICK STATS BAR -->
+            <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 p-6 rounded-2xl bg-slate-800/60 border border-slate-700/70 backdrop-blur-md shadow-2xl">
+                <div class="text-center border-r border-slate-700/50 last:border-r-0">
+                    <p class="text-2xl sm:text-3xl font-bold text-blue-400">9 Tuyến</p>
+                    <p class="text-xs text-slate-400 mt-1">Cáp quang biển (AAG, ADC, SJC2...)</p>
+                </div>
+                <div class="text-center border-r border-slate-700/50 last:border-r-0">
+                    <p class="text-2xl sm:text-3xl font-bold text-cyan-400">3 Trạm</p>
+                    <p class="text-xs text-slate-400 mt-1">Trạm Cập Bờ (Vũng Tàu, ĐN, QN)</p>
+                </div>
+                <div class="text-center border-r border-slate-700/50 last:border-r-0">
+                    <p class="text-2xl sm:text-3xl font-bold text-amber-400">&lt; 50ms</p>
+                    <p class="text-xs text-slate-400 mt-1">Thời gian chuyển mạch sự cố</p>
+                </div>
+                <div class="text-center">
+                    <p class="text-2xl sm:text-3xl font-bold text-emerald-400">99.9%</p>
+                    <p class="text-xs text-slate-400 mt-1">Mục tiêu độ sẵn sàng kết nối</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- REAL-WORLD CONTEXT -->
+    <section id="thuc-trang" class="py-20 bg-slate-900/80 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="text-blue-400 font-semibold text-xs uppercase tracking-widest">Thực Trạng Mạng Quốc Tế</span>
+                <h2 class="text-2xl sm:text-3xl font-bold text-white mt-1 mb-4">Vấn Đề Đứt Cáp Biển Tại Việt Nam</h2>
+                <div class="w-16 h-1 bg-blue-500 mx-auto rounded-full mb-4"></div>
+                <p class="text-slate-400 text-sm sm:text-base">Hơn 90% lưu lượng Internet Việt Nam kết nối đi quốc tế phụ thuộc vào các tuyến cáp quang xuyên đại dương.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center mb-16">
+                <div class="lg:col-span-5 relative group">
+                    <div class="rounded-2xl overflow-hidden border border-slate-700/80 shadow-2xl relative">
+                        <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1200&q=80" alt="Hệ thống cáp quang dưới biển" class="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4 right-4 p-4 rounded-xl bg-slate-900/80 backdrop-blur-md border border-slate-800">
+                            <p class="text-xs font-bold text-blue-400 flex items-center gap-1.5">
+                                <i class="fa-solid fa-water"></i> Môi Trường Đáy Biển Đông
+                            </p>
+                            <p class="text-xs text-slate-300 mt-1">Độ sâu nông, mật độ tàu thuyền qua lại dày đặc khiến nguy cơ cáp bị mỏ neo cào đứt luôn ở mức cao.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-7 space-y-4">
+                    <div class="p-5 rounded-xl bg-slate-800/40 border border-slate-700/80 hover:border-blue-500/50 transition-all flex items-start gap-4">
+                        <div class="w-10 h-10 rounded-lg bg-red-500/10 text-red-400 flex items-center justify-center text-lg shrink-0 mt-1">
+                            <i class="fa-solid fa-triangle-exclamation"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-base font-bold text-white mb-1">Tần Suất Sự Cố Dày Đặc</h3>
+                            <p class="text-slate-400 text-xs leading-relaxed">Các tuyến cáp then chốt (AAG, APG, IA, AAE-1) gặp sự cố trung bình 8–10 lần/năm, thời gian sửa chữa kéo dài từ vài tuần đến vài tháng do phải chờ tàu sửa cáp quốc tế.</p>
+                        </div>
+                    </div>
+
+                    <div class="p-5 rounded-xl bg-slate-800/40 border border-slate-700/80 hover:border-blue-500/50 transition-all flex items-start gap-4">
+                        <div class="w-10 h-10 rounded-lg bg-amber-500/10 text-amber-400 flex items-center justify-center text-lg shrink-0 mt-1">
+                            <i class="fa-solid fa-gauge-high"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-base font-bold text-white mb-1">Tăng Latency & Suy Giảm Băng Thông</h3>
+                            <p class="text-slate-400 text-xs leading-relaxed">Độ trễ ping kết nối đến các Server khu vực (Singapore, Nhật Bản, Mỹ) tăng từ 35ms lên >250ms, làm nghẽn các dịch vụ học tập, giao dịch và làm việc trực tuyến.</p>
+                        </div>
+                    </div>
+
+                    <div class="p-5 rounded-xl bg-slate-800/40 border border-slate-700/80 hover:border-blue-500/50 transition-all flex items-start gap-4">
+                        <div class="w-10 h-10 rounded-lg bg-indigo-500/10 text-indigo-400 flex items-center justify-center text-lg shrink-0 mt-1">
+                            <i class="fa-solid fa-route"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-base font-bold text-white mb-1">Áp Lực Quá Tải Tại Trạm Vũng Tàu</h3>
+                            <p class="text-slate-400 text-xs leading-relaxed">Khoảng 70% băng thông quốc tế đổ về Trạm Cập Bờ Vũng Tàu. Cần mô hình định tuyến linh hoạt hơn chia tải sang Đà Nẵng và Quy Nhơn.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ARCHITECTURE & NETWORK MODEL -->
+    <section id="giai-phap" class="py-20 bg-slate-900 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="text-blue-400 font-semibold text-xs uppercase tracking-widest">Kiến Trúc Mạng & Mô Hình Mô Phỏng - Nhóm 3</span>
+                <h2 class="text-2xl sm:text-4xl font-bold text-white mt-2 mb-4">Sơ Đồ Mạng Hạ Tầng Trạm Cập Bờ Cáp Biển</h2>
+                <p class="text-slate-400 text-sm sm:text-base">
+                    Mô hình mạng mô phỏng trên Cisco Packet Tracer do Nhóm 3 thiết kế, thể hiện sự kết nối giữa người dùng nội địa (PC_User_VN / SW_Core_VN), 3 trạm cập bờ trọng điểm (Quy Nhơn, Vũng Tàu, Đà Nẵng) và Server Quốc tế (R_Global_Server).
+                </p>
+            </div>
+
+            <!-- NETWORK DIAGRAM INTERACTIVE CONTAINER -->
+            <div id="demo" class="rounded-2xl bg-slate-950 border border-slate-800 p-6 md:p-8 shadow-2xl relative">
+                <div class="flex flex-col md:flex-row md:items-center justify-between border-b border-slate-800 pb-6 mb-6 gap-4">
+                    <div>
+                        <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                            <i class="fa-solid fa-network-wired text-blue-400"></i> Mô Phỏng Cấu Hình Router ISR4331 & Dynamic Failover
+                        </h3>
+                        <p class="text-xs text-slate-400 mt-1">Nhấn các nút bên dưới để mô phỏng kịch bản sự cố đứt cáp biển và xem chuyển mạch tự động</p>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <button id="btn-normal" onclick="setScenario('normal')" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-blue-600 text-white shadow-md transition-all">
+                            <i class="fa-solid fa-check-circle mr-1"></i> Trạng Thái Bình Thường
+                        </button>
+                        <button id="btn-vt-fail" onclick="setScenario('vt-fail')" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-red-400 border border-slate-700 transition-all">
+                            <i class="fa-solid fa-plug-circle-xmark mr-1"></i> Đứt Cáp Vũng Tàu
+                        </button>
+                        <button id="btn-multilink-fail" onclick="setScenario('multi-fail')" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-amber-400 border border-slate-700 transition-all">
+                            <i class="fa-solid fa-triangle-exclamation mr-1"></i> Đứt Cáp Đa Tuyến (VT + DN)
+                        </button>
+                    </div>
+                </div>
+
+                <!-- SVG Interactive Graphic -->
+                <div class="w-full overflow-x-auto py-4 flex justify-center bg-slate-900/60 rounded-xl border border-slate-800/80">
+                    <svg viewBox="0 0 900 480" class="w-full max-w-4xl h-auto" font-family="sans-serif">
+                        <rect width="100%" height="100%" fill="#090d16" rx="8" />
+                        
+                        <!-- Đường kết nối nội địa từ PC sang Switch -->
+                        <line x1="90" y1="240" x2="220" y2="240" stroke="#3b82f6" stroke-width="3" />
+
+                        <!-- Các đường cáp nội địa nối từ Switch đến 3 Trạm (Luôn giữ XANH vì mạng trong nước không đứt) -->
+                        <line id="path-sw-qn" x1="260" y1="220" x2="520" y2="90" stroke="#3b82f6" stroke-width="3" />
+                        <line id="path-sw-vt" x1="270" y1="240" x2="510" y2="240" stroke="#3b82f6" stroke-width="3.5" />
+                        <line id="path-sw-dn" x1="260" y1="260" x2="520" y2="390" stroke="#3b82f6" stroke-width="3" />
+
+                        <!-- CÁC TUYẾN CÁP BIỂN NỐI RA GLOBAL SERVER (ĐÂY LÀ PHẦN SẼ ĐỔI SANG MÀU ĐỎ KHI ĐỨT CÁP) -->
+                        <!-- Quy Nhơn (2 tuyến cáp biển) -->
+                        <path id="path-qn-1" d="M 580 80 Q 700 110 800 220" fill="none" stroke="#3b82f6" stroke-width="2.5"/>
+                        <path id="path-qn-2" d="M 580 100 Q 700 140 800 240" fill="none" stroke="#3b82f6" stroke-width="2.5"/>
+
+                        <!-- Vũng Tàu (Đúng Đủ 5 Tuyến Cáp Biển: AAG, APG, IA, AAE-1, SMW3) -->
+                        <line id="path-vt-1" x1="580" y1="210" x2="790" y2="220" stroke="#3b82f6" stroke-width="2.5" />
+                        <line id="path-vt-2" x1="580" y1="225" x2="790" y2="230" stroke="#3b82f6" stroke-width="2.5" />
+                        <line id="path-vt-3" x1="580" y1="240" x2="790" y2="240" stroke="#3b82f6" stroke-width="2.5" />
+                        <line id="path-vt-4" x1="580" y1="255" x2="790" y2="250" stroke="#3b82f6" stroke-width="2.5" />
+                        <line id="path-vt-5" x1="580" y1="270" x2="790" y2="260" stroke="#3b82f6" stroke-width="2.5" />
+
+                        <!-- Đà Nẵng (2 tuyến cáp biển) -->
+                        <path id="path-dn-1" d="M 580 400 Q 700 370 800 260" fill="none" stroke="#3b82f6" stroke-width="2.5"/>
+                        <path id="path-dn-2" d="M 580 380 Q 700 340 800 242" fill="none" stroke="#3b82f6" stroke-width="2.5"/>
+
+                        <!-- PC User -->
+                        <g transform="translate(40, 200)">
+                            <rect x="0" y="0" width="60" height="70" rx="8" fill="#1e293b" stroke="#475569" stroke-width="2"/>
+                            <path d="M 15 15 L 45 15 L 45 40 L 15 40 Z" fill="#0f172a" stroke="#3b82f6" stroke-width="1.5"/>
+                            <rect x="25" y="45" width="10" height="10" fill="#475569"/>
+                            <rect x="15" y="55" width="30" height="4" rx="2" fill="#64748b"/>
+                            <text x="30" y="83" font-size="11" font-weight="bold" fill="#cbd5e1" text-anchor="middle">PC_User_VN</text>
+                            <text x="30" y="95" font-size="9" fill="#64748b" text-anchor="middle">PC-PT</text>
+                        </g>
+
+                        <!-- Switch Core -->
+                        <g transform="translate(210, 205)">
+                            <rect x="0" y="0" width="70" height="40" rx="6" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+                            <path d="M 15 15 L 55 15 M 15 25 L 55 25 M 25 10 L 15 15 L 25 20 M 45 20 L 55 25 L 45 30" stroke="#60a5fa" stroke-width="2" stroke-linecap="round"/>
+                            <text x="35" y="58" font-size="11" font-weight="bold" fill="#cbd5e1" text-anchor="middle">SW_Core_VN</text>
+                            <text x="35" y="70" font-size="9" fill="#64748b" text-anchor="middle">2960-24TT</text>
+                        </g>
+
+                        <!-- Node Quy Nhơn -->
+                        <g transform="translate(520, 50)" id="node-qn">
+                            <circle id="circle-qn" cx="30" cy="30" r="28" fill="#1e293b" stroke="#3b82f6" stroke-width="2.5"/>
+                            <path d="M 18 18 L 42 42 M 42 18 L 18 42" stroke="#60a5fa" stroke-width="3" stroke-linecap="round" id="icon-qn"/>
+                            <text x="30" y="-8" font-size="11" font-weight="bold" fill="#e0f2fe" text-anchor="middle">R_Station_QN</text>
+                            <text x="30" y="72" font-size="9" fill="#0ea5e9" text-anchor="middle">Trạm Cập Bờ Quy Nhơn</text>
+                        </g>
+
+                        <!-- Node Vũng Tàu -->
+                        <g transform="translate(510, 210)" id="node-vt">
+                            <circle id="circle-vt" cx="30" cy="30" r="32" fill="#1e293b" stroke="#3b82f6" stroke-width="3"/>
+                            <path id="icon-vt" d="M 16 16 L 44 44 M 44 16 L 16 44" stroke="#60a5fa" stroke-width="3.5" stroke-linecap="round"/>
+                            <text x="30" y="-10" font-size="12" font-weight="bold" fill="#ffffff" text-anchor="middle">R_Station_VT</text>
+                            <text x="30" y="76" font-size="9" font-weight="semibold" fill="#38bdf8" text-anchor="middle">Trạm Vũng Tàu (5 tuyến cáp)</text>
+                        </g>
+
+                        <!-- Node Đà Nẵng -->
+                        <g transform="translate(520, 360)" id="node-dn">
+                            <circle id="circle-dn" cx="30" cy="30" r="28" fill="#1e293b" stroke="#3b82f6" stroke-width="2.5"/>
+                            <path d="M 18 18 L 42 42 M 42 18 L 18 42" stroke="#60a5fa" stroke-width="3" stroke-linecap="round" id="icon-dn"/>
+                            <text x="30" y="72" font-size="11" font-weight="bold" fill="#e0f2fe" text-anchor="middle">R_Station_DN</text>
+                            <text x="30" y="84" font-size="9" fill="#0ea5e9" text-anchor="middle">Trạm Cập Bờ Đà Nẵng</text>
+                        </g>
+
+                        <!-- Node International Server -->
+                        <g transform="translate(790, 205)">
+                            <circle cx="35" cy="35" r="32" fill="#1e1b4b" stroke="#6366f1" stroke-width="3"/>
+                            <circle cx="35" cy="35" r="20" fill="none" stroke="#818cf8" stroke-width="1.5"/>
+                            <ellipse cx="35" cy="35" rx="20" ry="8" fill="none" stroke="#818cf8" stroke-width="1.5"/>
+                            <line x1="35" y1="15" x2="35" y2="55" stroke="#818cf8" stroke-width="1.5"/>
+                            <text x="35" y="-10" font-size="12" font-weight="bold" fill="#818cf8" text-anchor="middle">R_Global_Server</text>
+                            <text x="35" y="82" font-size="9" fill="#a5b4fc" text-anchor="middle">International Gateway</text>
+                        </g>
+                    </svg>
+                </div>
+
+                <div class="mt-6 p-4 rounded-xl bg-slate-900 border border-slate-800 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                    <div class="flex items-center gap-3">
+                        <div id="status-indicator" class="w-3 h-3 rounded-full bg-emerald-500 animate-ping"></div>
+                        <div>
+                            <p class="text-xs text-slate-400">Trạng Thái Tuyến Đường Đang Hoạt Động:</p>
+                            <p id="status-text" class="text-sm font-bold text-emerald-400">Trạng thái bình thường: Cả 5 tuyến cáp Vũng Tàu & các tuyến dự phòng đều hoạt động 100%</p>
+                        </div>
+                    </div>
+                    <div class="text-xs text-slate-400 font-mono bg-slate-950 px-3 py-2 rounded-lg border border-slate-800">
+                        Protocol: OSPF / BGP Auto-Route
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- KEY FEATURES SECTION -->
+    <section id="tinh-nang" class="py-20 bg-slate-900/40 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <h2 class="text-2xl sm:text-3xl font-bold text-white mb-4">Giải Pháp Kỹ Thuật Đề Xuất</h2>
+                <div class="w-16 h-1 bg-blue-500 mx-auto rounded-full mb-4"></div>
+                <p class="text-slate-400 text-sm sm:text-base">Các cơ chế mạng máy tính nâng cao được Nhóm 3 áp dụng để giải quyết bài toán đứt cáp quang biển.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="p-6 rounded-2xl bg-slate-800/30 border border-slate-700/60 hover:bg-slate-800/60 transition-all">
+                    <div class="w-10 h-10 rounded-lg bg-blue-500/10 text-blue-400 flex items-center justify-center text-lg mb-4">
+                        <i class="fa-solid fa-arrows-split-up-and-left"></i>
+                    </div>
+                    <h3 class="text-base font-bold text-white mb-2">Định Tuyến Động (OSPF / BGP)</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Cấu hình giao thức OSPF trong nội địa và BGP kết nối quốc tế, cho phép cập nhật bảng định tuyến tự động chỉ trong vài mili-giây khi phát hiện mất kết nối vật lý.
+                    </p>
+                </div>
+
+                <div class="p-6 rounded-2xl bg-slate-800/30 border border-slate-700/60 hover:bg-slate-800/60 transition-all">
+                    <div class="w-10 h-10 rounded-lg bg-cyan-500/10 text-cyan-400 flex items-center justify-center text-lg mb-4">
+                        <i class="fa-solid fa-scale-balanced"></i>
+                    </div>
+                    <h3 class="text-base font-bold text-white mb-2">Cân Bằng Tải Đa Tuyến (ECMP)</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Phân bổ lưu lượng đồng thời qua cả 3 trạm Vũng Tàu, Đà Nẵng, Quy Nhơn theo tỷ lệ trọng số băng thông, tránh tình trạng dồn ứ tại duy nhất một điểm cập bờ.
+                    </p>
+                </div>
+
+                <div class="p-6 rounded-2xl bg-slate-800/30 border border-slate-700/60 hover:bg-slate-800/60 transition-all">
+                    <div class="w-10 h-10 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-lg mb-4">
+                        <i class="fa-solid fa-server"></i>
+                    </div>
+                    <h3 class="text-base font-bold text-white mb-2">Tăng Cường CDN Nội Địa</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Đề xuất mở rộng lưu trữ đệm (Caching) tại các Data Center nội địa cho các dịch vụ phổ biến (Google, Facebook, Akamai), giảm 40% nhu cầu truy xuất ra cáp biển.
+                    </p>
+                </div>
+
+                <div class="p-6 rounded-2xl bg-slate-800/30 border border-slate-700/60 hover:bg-slate-800/60 transition-all">
+                    <div class="w-10 h-10 rounded-lg bg-purple-500/10 text-purple-400 flex items-center justify-center text-lg mb-4">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <h3 class="text-base font-bold text-white mb-2">QoS (Quality of Service)</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Ưu tiên băng thông cho các giao thức quan trọng (DNS, HTTPS, Giao dịch tài chính, Email) và giới hạn băng thông các dịch vụ giải trí dung lượng lớn khi có sự cố.
+                    </p>
+                </div>
+
+                <div class="p-6 rounded-2xl bg-slate-800/30 border border-slate-700/60 hover:bg-slate-800/60 transition-all">
+                    <div class="w-10 h-10 rounded-lg bg-amber-500/10 text-amber-400 flex items-center justify-center text-lg mb-4">
+                        <i class="fa-solid fa-cloud"></i>
+                    </div>
+                    <h3 class="text-base font-bold text-white mb-2">Dự Phòng Qua Cáp Đất Liền</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Tích hợp tuyến cáp đất liền xuyên biên giới (CSC - China-Vietnam, CSC - Thailand-Malaysia) làm đường dự phòng cấp 2 khi cáp biển gặp thảm họa đứt toàn bộ.
+                    </p>
+                </div>
+
+                <div class="p-6 rounded-2xl bg-slate-800/30 border border-slate-700/60 hover:bg-slate-800/60 transition-all">
+                    <div class="w-10 h-10 rounded-lg bg-rose-500/10 text-rose-400 flex items-center justify-center text-lg mb-4">
+                        <i class="fa-solid fa-chart-line"></i>
+                    </div>
+                    <h3 class="text-base font-bold text-white mb-2">Giám Sát Real-time Latency</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Hệ thống tự động đo kiểm độ trễ ICMP/RTT đến các mốc Gateway quốc tế, tự động gửi cảnh báo và điều chỉnh Metric định tuyến khi độ trễ vượt ngưỡng 120ms.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TEAM MEMBERS SECTION (7 THÀNH VIÊN) -->
+    <section id="thanh-vien" class="py-20 bg-slate-900 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="text-blue-400 font-semibold text-xs uppercase tracking-widest">Đội Ngũ Thực Hiện</span>
+                <h2 class="text-2xl sm:text-3xl font-bold text-white mt-1 mb-4">Thành Viên Nhóm 3</h2>
+                <div class="w-16 h-1 bg-blue-500 mx-auto rounded-full mb-4"></div>
+                <p class="text-slate-400 text-sm sm:text-base">Sinh viên Đại học Kinh tế TP.HCM (UEH) - Học phần Mạng Máy Tính</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 justify-center">
+                <div class="p-5 rounded-2xl bg-slate-800/40 border border-slate-700 text-center relative group overflow-hidden hover:border-blue-500/50 transition-all">
+                    <div class="w-16 h-16 rounded-full bg-gradient-to-tr from-blue-600 to-cyan-400 mx-auto flex items-center justify-center text-white text-xl font-bold mb-3 shadow-lg shadow-blue-500/20">
+                        NNS
+                    </div>
+                    <h3 class="text-base font-bold text-white">Nguyễn Ngọc Sơn</h3>
+                    <p class="text-xs text-blue-400 font-medium mb-2">Trưởng Nhóm / System Architect</p>
+                    <p class="text-slate-400 text-xs leading-relaxed">
+                        Thiết kế sơ đồ mạng Cisco Packet Tracer, cấu hình OSPF/BGP và tổng hợp báo cáo.
+                    </p>
+                </div>
+
+                <div class="p-5 rounded-2xl bg-slate-800/40 border border-slate-700 text-center relative group overflow-hidden hover:border-purple-500/50 transition-all">
+                    <div class="w-16 h-16 rounded-full bg-gradient-to-tr from-purple-600 to-pink-400 mx-auto flex items-center justify-center text-white text-xl font-bold mb-3 shadow-lg shadow-purple-500/20">
+                        MTA
+                    </div>
+                    <h3 class="text-base font-bold text-white">Mai Đinh Thế Anh</h3>
+                    <p class="text-xs text-purple-400 font-medium mb-2">Network Engineer</p>
+                    <p class="text-slate-400 text-xs leading-relaxed">
+                        Phân tích nguyên nhân đứt cáp biển & kiểm thử kịch bản Failover trên trạm Vũng Tàu.
+                    </p>
+                </div>
+
+                <div class="p-5 rounded-2xl bg-slate-800/40 border border-slate-700 text-center relative group overflow-hidden hover:border-emerald-500/50 transition-all">
+                    <div class="w-16 h-16 rounded-full bg-gradient-to-tr from-emerald-600 to-teal-400 mx-auto flex items-center justify-center text-white text-xl font-bold mb-3 shadow-lg shadow-emerald-500/20">
+                        NDB
+                    </div>
+                    <h3 class="text-base font-bold text-white">Nguyễn Duy Bảo</h3>
+                    <p class="text-xs text-emerald-400 font-medium mb-2">Web Developer</p>
+                    <p class="text-slate-400 text-xs leading-relaxed">
+                        Xây dựng giao diện Landing Page, thiết kế đồ họa sơ đồ tương tác & tối ưu Responsive.
+                    </p>
+                </div>
+
+                <div class="p-5 rounded-2xl bg-slate-800/40 border border-slate-700 text-center relative group overflow-hidden hover:border-amber-500/50 transition-all">
+                    <div class="w-16 h-16 rounded-full bg-gradient-to-tr from-amber-600 to-yellow-400 mx-auto flex items-center justify-center text-white text-xl font-bold mb-3 shadow-lg shadow-amber-500/20">
+                        NLMN
+                    </div>
+                    <h3 class="text-base font-bold text-white">Nguyễn Lê Minh Nghĩa</h3>
+                    <p class="text-xs text-amber-400 font-medium mb-2">DevOps / Deployment</p>
+                    <p class="text-slate-400 text-xs leading-relaxed">
+                        Cấu hình Hosting InfinityFree, kết nối FTP FileZilla & triển khai dự án lên GitHub Pages.
+                    </p>
+                </div>
+
+                <div class="p-5 rounded-2xl bg-slate-800/40 border border-slate-700 text-center relative group overflow-hidden hover:border-rose-500/50 transition-all">
+                    <div class="w-16 h-16 rounded-full bg-gradient-to-tr from-rose-600 to-red-400 mx-auto flex items-center justify-center text-white text-xl font-bold mb-3 shadow-lg shadow-rose-500/20">
+                        KHH
+                    </div>
+                    <h3 class="text-base font-bold text-white">Kim Ngọc Hải Huy</h3>
+                    <p class="text-xs text-rose-400 font-medium mb-2">Python Developer</p>
+                    <p class="text-slate-400 text-xs leading-relaxed">
+                        Lập trình kịch bản Python gửi Email giới thiệu tự động bằng giao thức SMTP.
+                    </p>
+                </div>
+
+                <div class="p-5 rounded-2xl bg-slate-800/40 border border-slate-700 text-center relative group overflow-hidden hover:border-indigo-500/50 transition-all">
+                    <div class="w-16 h-16 rounded-full bg-gradient-to-tr from-indigo-600 to-blue-400 mx-auto flex items-center justify-center text-white text-xl font-bold mb-3 shadow-lg shadow-indigo-500/20">
+                        NBM
+                    </div>
+                    <h3 class="text-base font-bold text-white">Nguyễn Bình Minh</h3>
+                    <p class="text-xs text-indigo-400 font-medium mb-2">Protocol Specialist</p>
+                    <p class="text-slate-400 text-xs leading-relaxed">
+                        Tích hợp mô phỏng P2P WebRTC và phân tích cơ chế truyền tải media gian thực.
+                    </p>
+                </div>
+
+                <div class="p-5 rounded-2xl bg-slate-800/40 border border-slate-700 text-center relative group overflow-hidden hover:border-cyan-500/50 transition-all">
+                    <div class="w-16 h-16 rounded-full bg-gradient-to-tr from-cyan-600 to-teal-400 mx-auto flex items-center justify-center text-white text-xl font-bold mb-3 shadow-lg shadow-cyan-500/20">
+                        NND
+                    </div>
+                    <h3 class="text-base font-bold text-white">Nguyễn Hoàng Nhật Đăng</h3>
+                    <p class="text-xs text-cyan-400 font-medium mb-2">Data Analyst</p>
+                    <p class="text-slate-400 text-xs leading-relaxed">
+                        Thu thập số liệu thống kê RTT/Latency thực tế của cáp biển Việt Nam & kiểm thử chất lượng.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECT TIMELINE / PROGRESS -->
+    <section id="tien-do" class="py-20 bg-slate-900/60 border-t border-slate-800">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <h2 class="text-2xl sm:text-3xl font-bold text-white mb-4">Tiến Độ Thực Hiện Đồ Án - Nhóm 3</h2>
+                <div class="w-16 h-1 bg-blue-500 mx-auto rounded-full mb-4"></div>
+                <p class="text-slate-400 text-sm">Lộ trình triển khai dự án qua từng tuần học phần</p>
+            </div>
+
+            <div class="space-y-8 relative before:absolute before:inset-0 before:left-4 sm:before:left-1/2 before:-ml-0.5 before:w-0.5 before:bg-slate-700">
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
+                    <div class="flex items-center justify-center w-8 h-8 rounded-full bg-blue-600 text-white font-bold text-xs shadow shrink-0 md:order-1 stroke-slate-900 z-10">
+                        1
+                    </div>
+                    <div class="w-[calc(100%-3rem)] md:w-[calc(50%-2.5rem)] p-5 rounded-xl bg-slate-800/60 border border-slate-700">
+                        <div class="flex items-center justify-between mb-1">
+                            <span class="font-bold text-white text-sm">Tuần 1-2: Khảo Sát & Khai Thác Đề Tài</span>
+                            <span class="text-xs text-emerald-400 font-semibold">Hoàn thành</span>
+                        </div>
+                        <p class="text-slate-400 text-xs">Nhóm 3 thu thập số liệu các tuyến cáp quang biển tại Việt Nam, phân tích nguyên nhân đứt cáp và ảnh hưởng RTT.</p>
+                    </div>
+                </div>
+
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
+                    <div class="flex items-center justify-center w-8 h-8 rounded-full bg-blue-600 text-white font-bold text-xs shadow shrink-0 md:order-1 stroke-slate-900 z-10">
+                        2
+                    </div>
+                    <div class="w-[calc(100%-3rem)] md:w-[calc(50%-2.5rem)] p-5 rounded-xl bg-slate-800/60 border border-slate-700">
+                        <div class="flex items-center justify-between mb-1">
+                            <span class="font-bold text-white text-sm">Tuần 3-4: Thiết Kế Sơ Đồ Packet Tracer</span>
+                            <span class="text-xs text-emerald-400 font-semibold">Hoàn thành</span>
+                        </div>
+                        <p class="text-slate-400 text-xs">Xây dựng topology mô phỏng 3 trạm Vũng Tàu, Đà Nẵng, Quy Nhơn và cấu hình OSPF failover.</p>
+                    </div>
+                </div>
+
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
+                    <div class="flex items-center justify-center w-8 h-8 rounded-full bg-blue-600 text-white font-bold text-xs shadow shrink-0 md:order-1 stroke-slate-900 z-10">
+                        3
+                    </div>
+                    <div class="w-[calc(100%-3rem)] md:w-[calc(50%-2.5rem)] p-5 rounded-xl bg-slate-800/60 border border-slate-700">
+                        <div class="flex items-center justify-between mb-1">
+                            <span class="font-bold text-white text-sm">Tuần 5: Xây Dựng Landing Page & Hosting</span>
+                            <span class="text-xs text-blue-400 font-semibold">Đang thực hiện</span>
+                        </div>
+                        <p class="text-slate-400 text-xs">Viết web Landing Page giới thiệu dự án, đẩy lên InfinityFree/GitHub Pages và tích hợp mô phỏng WebRTC P2P.</p>
+                    </div>
+                </div>
+
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
+                    <div class="flex items-center justify-center w-8 h-8 rounded-full bg-slate-700 text-slate-400 font-bold text-xs shadow shrink-0 md:order-1 stroke-slate-900 z-10">
+                        4
+                    </div>
+                    <div class="w-[calc(100%-3rem)] md:w-[calc(50%-2.5rem)] p-5 rounded-xl bg-slate-800/40 border border-slate-800">
+                        <div class="flex items-center justify-between mb-1">
+                            <span class="font-bold text-slate-300 text-sm">Tuần 6: Lập Trình Python SMTP Auto-mail</span>
+                            <span class="text-xs text-slate-500">Kế hoạch</span>
+                        </div>
+                        <p class="text-slate-500 text-xs">Viết script Python gửi thư tự động đính kèm đường dẫn Landing Page giới thiệu kết quả đồ án.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT & FOOTER -->
+    <footer class="bg-slate-950 border-t border-slate-800 pt-16 pb-12 text-slate-400 text-xs">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="w-8 h-8 rounded bg-blue-600 flex items-center justify-center font-bold text-white text-base">
+                            <i class="fa-solid fa-network-wired"></i>
+                        </div>
+                        <span class="font-bold text-base text-white">Đồ Án Mạng Máy Tính - NHÓM 3</span>
+                    </div>
+                    <p class="text-slate-400 leading-relaxed mb-4">
+                        Đề tài: Tác động của sự cố đứt cáp biển đến chất lượng Internet tại Việt Nam và giải pháp tối ưu định tuyến.
+                    </p>
+                    <p class="text-slate-500">Giảng viên hướng dẫn: TS Nguyễn Mạnh Tuấn (tuannm@ueh.edu.vn)</p>
+                </div>
+
+                <div>
+                    <h4 class="text-sm font-bold text-white mb-4">Liên Kết Nhanh</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#tong-quan" class="hover:text-blue-400 transition-colors">Tổng Quan Vấn Đề</a></li>
+                        <li><a href="#giai-phap" class="hover:text-blue-400 transition-colors">Mô Hình Cisco Packet Tracer</a></li>
+                        <li><a href="#demo" class="hover:text-blue-400 transition-colors">Mô Phỏng Chuyển Mạch Sự Cố</a></li>
+                        <li><a href="Web_RTC.html" class="text-blue-400 hover:underline"><i class="fa-solid fa-video mr-1"></i> Mở Trang Mô Phỏng WebRTC P2P</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-sm font-bold text-white mb-4">Thông Tin Liên Hệ Nhóm 3</h4>
+                    <p class="mb-2"><i class="fa-solid fa-envelope mr-2 text-blue-400"></i> Email: nhom3-network@student.ueh.edu.vn</p>
+                    <p class="mb-2"><i class="fa-solid fa-location-dot mr-2 text-blue-400"></i> Trường Đại học Kinh tế TP. Hồ Chí Minh (UEH)</p>
+                    <p><i class="fa-solid fa-globe mr-2 text-blue-400"></i> Server Host: GitHub Pages / InfinityFree</p>
+                </div>
+            </div>
+
+            <div class="border-t border-slate-900 pt-6 text-center text-slate-600">
+                <p>&copy; 2026 UEH Computer Networking Project - Nhóm 3. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- LOGIC JAVASCRIPT CHUẨN KHI ĐỨT CÁP CHỈ ĐỎ PHẦN CÁP BIỂN QUỐC TẾ -->
+    <script>
+        function setScenario(type) {
+            document.getElementById('btn-normal').className = "px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition-all";
+            document.getElementById('btn-vt-fail').className = "px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition-all";
+            document.getElementById('btn-multilink-fail').className = "px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition-all";
+
+            const circleVt = document.getElementById('circle-vt');
+            const iconVt = document.getElementById('icon-vt');
+            const circleDn = document.getElementById('circle-dn');
+            const iconDn = document.getElementById('icon-dn');
+            const circleQn = document.getElementById('circle-qn');
+            const iconQn = document.getElementById('icon-qn');
+
+            const statusInd = document.getElementById('status-indicator');
+            const statusText = document.getElementById('status-text');
+
+            // 5 tuyến cáp biển Vũng Tàu ra Global
+            const vtPaths = ['path-vt-1','path-vt-2','path-vt-3','path-vt-4','path-vt-5'];
+            const dnPaths = ['path-dn-1','path-dn-2'];
+            const qnPaths = ['path-qn-1','path-qn-2'];
+
+            if (type === 'normal') {
+                document.getElementById('btn-normal').className = "px-3 py-1.5 rounded-lg text-xs font-semibold bg-blue-600 text-white shadow-md transition-all";
+
+                circleVt.setAttribute('stroke', '#3b82f6');
+                iconVt.setAttribute('stroke', '#60a5fa');
+                circleDn.setAttribute('stroke', '#3b82f6');
+                iconDn.setAttribute('stroke', '#60a5fa');
+                circleQn.setAttribute('stroke', '#3b82f6');
+                iconQn.setAttribute('stroke', '#60a5fa');
+
+                vtPaths.forEach(id => document.getElementById(id).setAttribute('stroke', '#3b82f6'));
+                dnPaths.forEach(id => document.getElementById(id).setAttribute('stroke', '#3b82f6'));
+                qnPaths.forEach(id => document.getElementById(id).setAttribute('stroke', '#3b82f6'));
+
+                statusInd.className = "w-3 h-3 rounded-full bg-emerald-500 animate-ping";
+                statusText.className = "text-sm font-bold text-emerald-400";
+                statusText.innerText = "Trạng thái bình thường: Cả 5 tuyến cáp Vũng Tàu & các tuyến dự phòng đều hoạt động 100%";
+            } 
+            else if (type === 'vt-fail') {
+                document.getElementById('btn-vt-fail').className = "px-3 py-1.5 rounded-lg text-xs font-semibold bg-red-600 text-white shadow-md transition-all";
+
+                circleVt.setAttribute('stroke', '#ef4444');
+                iconVt.setAttribute('stroke', '#ef4444');
+                circleDn.setAttribute('stroke', '#10b981');
+                iconDn.setAttribute('stroke', '#10b981');
+                circleQn.setAttribute('stroke', '#10b981');
+                iconQn.setAttribute('stroke', '#10b981');
+
+                // CHỈ ĐỎ PHẦN CÁP BIỂN QUỐC TẾ CỦA VŨNG TÀU (5 TUYẾN)
+                vtPaths.forEach(id => document.getElementById(id).setAttribute('stroke', '#ef4444'));
+                dnPaths.forEach(id => document.getElementById(id).setAttribute('stroke', '#10b981'));
+                qnPaths.forEach(id => document.getElementById(id).setAttribute('stroke', '#10b981'));
+
+                statusInd.className = "w-3 h-3 rounded-full bg-amber-500 animate-ping";
+                statusText.className = "text-sm font-bold text-amber-400";
+                statusText.innerText = "SỰ CỐ ĐỨT CÁP VŨNG TÀU! OSPF tự động chuyển hướng toàn bộ lưu lượng qua Trạm Đà Nẵng & Quy Nhơn";
+            }
+            else if (type === 'multi-fail') {
+                document.getElementById('btn-multilink-fail').className = "px-3 py-1.5 rounded-lg text-xs font-semibold bg-amber-600 text-white shadow-md transition-all";
+
+                circleVt.setAttribute('stroke', '#ef4444');
+                iconVt.setAttribute('stroke', '#ef4444');
+                circleDn.setAttribute('stroke', '#ef4444');
+                iconDn.setAttribute('stroke', '#ef4444');
+                circleQn.setAttribute('stroke', '#3b82f6');
+                iconQn.setAttribute('stroke', '#3b82f6');
+
+                // CHỈ ĐỎ PHẦN CÁP BIỂN CỦA VŨNG TÀU VÀ ĐÀ NẴNG
+                vtPaths.forEach(id => document.getElementById(id).setAttribute('stroke', '#ef4444'));
+                dnPaths.forEach(id => document.getElementById(id).setAttribute('stroke', '#ef4444'));
+                qnPaths.forEach(id => document.getElementById(id).setAttribute('stroke', '#3b82f6'));
+
+                statusInd.className = "w-3 h-3 rounded-full bg-blue-500 animate-ping";
+                statusText.className = "text-sm font-bold text-blue-400";
+                statusText.innerText = "SỰ CỐ KÉP VT & DN! Chuyển hướng thành công sang tuyến dự phòng cuối cùng Trạm Quy Nhơn (R_Station_QN)!";
+            }
+        }
+    </script>
+</body>
+</html>

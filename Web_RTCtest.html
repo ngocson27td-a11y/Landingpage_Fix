@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>WebRTC Teaching Demo 3 Peers</title>
+
+
+<style>
+
+
+body{
+
+font-family:Arial;
+
+background:#f4f4f4;
+
+margin:20px;
+
+}
+
+
+.tabs{
+
+display:flex;
+
+margin-bottom:20px;
+
+}
+
+
+.tab{
+
+padding:10px 20px;
+
+background:#ccc;
+
+cursor:pointer;
+
+margin-right:5px;
+
+border-radius:5px;
+
+}
+
+
+.tab.active{
+
+background:#007BFF;
+
+color:white;
+
+}
+
+
+.panel{
+
+display:none;
+
+background:white;
+
+padding:20px;
+
+border-radius:10px;
+
+box-shadow:0 0 5px rgba(0,0,0,0.2);
+
+}
+
+
+.panel.active{
+
+display:block;
+
+}
+
+
+video{
+
+width:250px;
+
+border:1px solid #ccc;
+
+margin:5px;
+
+}
+
+
+textarea{
+
+width:100%;
+
+height:60px;
+
+margin-top:5px;
+
+}
+
+
+#chatBox{
+
+border:1px solid #ccc;
+
+height:150px;
+
+overflow:auto;
+
+padding:10px;
+
+margin-top:10px;
+
+background:#fafafa;
+
+}
+
+
+button{
+
+margin:5px;
+
+padding:6px 12px;
+
+}
+
+
+.videoRow{
+
+display:flex;
+
+gap:20px;
+
+margin-bottom:10px;
+
+}
+
+
+.videoBox{
+
+text-align:center;
+
+}
+
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<h2>WebRTC Video + Chat Demo (3 Peers)</h2>
+
+
+<div class="tabs">
+
+<div class="tab active" onclick="showTab('A')">Peer A</div>
+
+<div class="tab" onclick="showTab('B')">Peer B</div>
+
+<div class="tab" onclick="showTab('C')">Peer C</div>
+
+</div>
+
+
+<!-- PEER A -->
+
+
+<div id="A" class="panel active">
+
+
+<h3>Peer A</h3>
+
+
+<div class="videoRow">
+
+<div class="videoBox">
+
+<b>Camera của bạn</b><br>
+
+<video id="videoA_local" autoplay muted playsinline></video>
+
+</div>
+
+<div class="videoBox">
+
+<b>Video Peer B</b><br>
+
+<video id="videoA_remoteB" autoplay playsinline></video>
+
+</div>
+
+<div class="videoBox">
+
+<b>Video Peer C</b><br>
+
+<video id="videoA_remoteC" autoplay playsinline></video>
+
+</div>
+
+</div>
+
+
+<button onclick="startCamera()">1 Bật Camera</button>
+
+
+<hr>
+
+<h4>Kết nối với Peer B</h4>
+
+<button onclick="createOffer_AB()">2 Tạo Offer cho B</button>
+
+<textarea id="offerBox_AB"></textarea>
+
+<textarea id="answerBox_AB" placeholder="Paste Answer từ B"></textarea>
+
+<button onclick="setAnswer_AB()">3 Kết nối với B</button>
+
+
+<hr>
+
+<h4>Kết nối với Peer C</h4>
+
+<button onclick="createOffer_AC()">2 Tạo Offer cho C</button>
+
+<textarea id="offerBox_AC"></textarea>
+
+<textarea id="answerBox_AC" placeholder="Paste Answer từ C"></textarea>
+
+<button onclick="setAnswer_AC()">3 Kết nối với C</button>
+
+
+</div>
+
+
+
+<!-- PEER B -->
+
+
+<div id="B" class="panel">
+
+
+<h3>Peer B</h3>
+
+
+<div class="videoRow">
+
+<div class="videoBox">
+
+<b>Camera của bạn</b><br>
+
+<video id="videoB_local" autoplay muted playsinline></video>
+
+</div>
+
+<div class="videoBox">
+
+<b>Video Peer A</b><br>
+
+<video id="videoB_remoteA" autoplay playsinline></video>
+
+</div>
+
+<div class="videoBox">
+
+<b>Video Peer C</b><br>
+
+<video id="videoB_remoteC" autoplay playsinline></video>
+
+</div>
+
+</div>
+
+
+<button onclick="startCamera()">Bật Camera</button>
+
+
+<hr>
+
+<h4>Nhận kết nối từ Peer A</h4>
+
+<textarea id="remoteOffer_BA"></textarea>
+
+<button onclick="setRemoteOffer_BA()">1 Nhập Offer từ A</button>
+
+<button onclick="createAnswer_BA()">2 Tạo Answer cho A</button>
+
+<textarea id="generatedAnswer_BA"></textarea>
+
+
+<hr>
+
+<h4>Kết nối với Peer C</h4>
+
+<button onclick="createOffer_BC()">2 Tạo Offer cho C</button>
+
+<textarea id="offerBox_BC"></textarea>
+
+<textarea id="answerBox_BC" placeholder="Paste Answer từ C"></textarea>
+
+<button onclick="setAnswer_BC()">3 Kết nối với C</button>
+
+
+</div>
+
+
+
+<!-- PEER C -->
+
+
+<div id="C" class="panel">
+
+
+<h3>Peer C</h3>
+
+
+<div class="videoRow">
+
+<div class="videoBox">
+
+<b>Camera của bạn</b><br>
+
+<video id="videoC_local" autoplay muted playsinline></video>
+
+</div>
+
+<div class="videoBox">
+
+<b>Video Peer A</b><br>
+
+<video id="videoC_remoteA" autoplay playsinline></video>
+
+</div>
+
+<div class="videoBox">
+
+<b>Video Peer B</b><br>
+
+<video id="videoC_remoteB" autoplay playsinline></video>
+
+</div>
+
+</div>
+
+
+<button onclick="startCamera()">Bật Camera</button>
+
+
+<hr>
+
+<h4>Nhận kết nối từ Peer A</h4>
+
+<textarea id="remoteOffer_CA"></textarea>
+
+<button onclick="setRemoteOffer_CA()">1 Nhập Offer từ A</button>
+
+<button onclick="createAnswer_CA()">2 Tạo Answer cho A</button>
+
+<textarea id="generatedAnswer_CA"></textarea>
+
+
+<hr>
+
+<h4>Nhận kết nối từ Peer B</h4>
+
+<textarea id="remoteOffer_CB"></textarea>
+
+<button onclick="setRemoteOffer_CB()">1 Nhập Offer từ B</button>
+
+<button onclick="createAnswer_CB()">2 Tạo Answer cho B</button>
+
+<textarea id="generatedAnswer_CB"></textarea>
+
+
+</div>
+
+
+
+<h3>Chat giữa 3 Peer</h3>
+
+
+<div id="chatBox"></div>
+
+
+<input id="chatInput" placeholder="Nhập tin nhắn">
+
+
+<button onclick="sendMessage()">Gửi</button>
+
+
+
+<script>
+
+
+let stream
+
+
+// Các biến kết nối cho từng cặp
+
+let pcA_B, pcB_A
+
+let pcA_C, pcC_A
+
+let pcB_C, pcC_B
+
+
+let chatChannels = []
+
+
+
+function showTab(id){
+
+document.querySelectorAll(".panel").forEach(p=>p.classList.remove("active"))
+
+document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"))
+
+document.getElementById(id).classList.add("active")
+
+event.target.classList.add("active")
+
+}
+
+
+
+async function startCamera(){
+
+if(stream) return
+
+stream = await navigator.mediaDevices.getUserMedia({
+
+video:true,
+
+audio:true
+
+})
+
+document.getElementById("videoA_local").srcObject = stream
+
+document.getElementById("videoB_local").srcObject = stream
+
+document.getElementById("videoC_local").srcObject = stream
+
+}
+
+
+
+// ==========================================
+
+// KẾT NỐI A VÀ B
+
+// ==========================================
+
+async function createOffer_AB(){
+
+if(!stream) await startCamera()
+
+pcA_B = new RTCPeerConnection({ iceServers: [{ urls: "stun:stun.l.google.com:19302" }] })
+
+stream.getTracks().forEach(track=>{
+
+pcA_B.addTrack(track,stream)
+
+})
+
+let chatChannel = pcA_B.createDataChannel("chat")
+
+setupChat(chatChannel)
+
+pcA_B.ontrack = e=>{
+
+document.getElementById("videoA_remoteB").srcObject = e.streams[0]
+
+}
+
+pcA_B.onicecandidate = e=>{
+
+if(!e.candidate){
+
+document.getElementById("offerBox_AB").value = JSON.stringify(pcA_B.localDescription)
+
+}
+
+}
+
+let offer = await pcA_B.createOffer()
+
+await pcA_B.setLocalDescription(offer)
+
+}
+
+
+async function setRemoteOffer_BA(){
+
+if(!stream) await startCamera()
+
+pcB_A = new RTCPeerConnection({ iceServers: [{ urls: "stun:stun.l.google.com:19302" }] })
+
+stream.getTracks().forEach(track=>{
+
+pcB_A.addTrack(track,stream)
+
+})
+
+pcB_A.ontrack = e=>{
+
+document.getElementById("videoB_remoteA").srcObject = e.streams[0]
+
+}
+
+pcB_A.ondatachannel = e=>{
+
+setupChat(e.channel)
+
+}
+
+pcB_A.onicecandidate = e=>{
+
+if(!e.candidate){
+
+document.getElementById("generatedAnswer_BA").value = JSON.stringify(pcB_A.localDescription)
+
+}
+
+}
+
+let offer = JSON.parse(document.getElementById("remoteOffer_BA").value)
+
+await pcB_A.setRemoteDescription(offer)
+
+}
+
+
+async function createAnswer_BA(){
+
+if(pcB_A.signalingState !== "have-remote-offer"){
+
+alert("Chưa có Offer hợp lệ")
+
+return
+
+}
+
+let answer = await pcB_A.createAnswer()
+
+await pcB_A.setLocalDescription(answer)
+
+}
+
+
+async function setAnswer_AB(){
+
+let answer = JSON.parse(document.getElementById("answerBox_AB").value)
+
+await pcA_B.setRemoteDescription(answer)
+
+}
+
+
+
+// ==========================================
+
+// KẾT NỐI A VÀ C
+
+// ==========================================
+
+async function createOffer_AC(){
+
+if(!stream) await startCamera()
+
+pcA_C = new RTCPeerConnection({ iceServers: [{ urls: "stun:stun.l.google.com:19302" }] })
+
+stream.getTracks().forEach(track=>{
+
+pcA_C.addTrack(track,stream)
+
+})
+
+let chatChannel = pcA_C.createDataChannel("chat")
+
+setupChat(chatChannel)
+
+pcA_C.ontrack = e=>{
+
+document.getElementById("videoA_remoteC").srcObject = e.streams[0]
+
+}
+
+pcA_C.onicecandidate = e=>{
+
+if(!e.candidate){
+
+document.getElementById("offerBox_AC").value = JSON.stringify(pcA_C.localDescription)
+
+}
+
+}
+
+let offer = await pcA_C.createOffer()
+
+await pcA_C.setLocalDescription(offer)
+
+}
+
+
+async function setRemoteOffer_CA(){
+
+if(!stream) await startCamera()
+
+pcC_A = new RTCPeerConnection({ iceServers: [{ urls: "stun:stun.l.google.com:19302" }] })
+
+stream.getTracks().forEach(track=>{
+
+pcC_A.addTrack(track,stream)
+
+})
+
+pcC_A.ontrack = e=>{
+
+document.getElementById("videoC_remoteA").srcObject = e.streams[0]
+
+}
+
+pcC_A.ondatachannel = e=>{
+
+setupChat(e.channel)
+
+}
+
+pcC_A.onicecandidate = e=>{
+
+if(!e.candidate){
+
+document.getElementById("generatedAnswer_CA").value = JSON.stringify(pcC_A.localDescription)
+
+}
+
+}
+
+let offer = JSON.parse(document.getElementById("remoteOffer_CA").value)
+
+await pcC_A.setRemoteDescription(offer)
+
+}
+
+
+async function createAnswer_CA(){
+
+if(pcC_A.signalingState !== "have-remote-offer"){
+
+alert("Chưa có Offer hợp lệ")
+
+return
+
+}
+
+let answer = await pcC_A.createAnswer()
+
+await pcC_A.setLocalDescription(answer)
+
+}
+
+
+async function setAnswer_AC(){
+
+let answer = JSON.parse(document.getElementById("answerBox_AC").value)
+
+await pcA_C.setRemoteDescription(answer)
+
+}
+
+
+
+// ==========================================
+
+// KẾT NỐI B VÀ C
+
+// ==========================================
+
+async function createOffer_BC(){
+
+if(!stream) await startCamera()
+
+pcB_C = new RTCPeerConnection({ iceServers: [{ urls: "stun:stun.l.google.com:19302" }] })
+
+stream.getTracks().forEach(track=>{
+
+pcB_C.addTrack(track,stream)
+
+})
+
+let chatChannel = pcB_C.createDataChannel("chat")
+
+setupChat(chatChannel)
+
+pcB_C.ontrack = e=>{
+
+document.getElementById("videoB_remoteC").srcObject = e.streams[0]
+
+}
+
+pcB_C.onicecandidate = e=>{
+
+if(!e.candidate){
+
+document.getElementById("offerBox_BC").value = JSON.stringify(pcB_C.localDescription)
+
+}
+
+}
+
+let offer = await pcB_C.createOffer()
+
+await pcB_C.setLocalDescription(offer)
+
+}
+
+
+async function setRemoteOffer_CB(){
+
+if(!stream) await startCamera()
+
+pcC_B = new RTCPeerConnection({ iceServers: [{ urls: "stun:stun.l.google.com:19302" }] })
+
+stream.getTracks().forEach(track=>{
+
+pcC_B.addTrack(track,stream)
+
+})
+
+pcC_B.ontrack = e=>{
+
+document.getElementById("videoC_remoteB").srcObject = e.streams[0]
+
+}
+
+pcC_B.ondatachannel = e=>{
+
+setupChat(e.channel)
+
+}
+
+pcC_B.onicecandidate = e=>{
+
+if(!e.candidate){
+
+document.getElementById("generatedAnswer_CB").value = JSON.stringify(pcC_B.localDescription)
+
+}
+
+}
+
+let offer = JSON.parse(document.getElementById("remoteOffer_CB").value)
+
+await pcC_B.setRemoteDescription(offer)
+
+}
+
+
+async function createAnswer_CB(){
+
+if(pcC_B.signalingState !== "have-remote-offer"){
+
+alert("Chưa có Offer hợp lệ")
+
+return
+
+}
+
+let answer = await pcC_B.createAnswer()
+
+await pcC_B.setLocalDescription(answer)
+
+}
+
+
+async function setAnswer_BC(){
+
+let answer = JSON.parse(document.getElementById("answerBox_BC").value)
+
+await pcB_C.setRemoteDescription(answer)
+
+}
+
+
+
+// ==========================================
+
+// XỬ LÝ CHAT CHUNG
+
+// ==========================================
+
+function setupChat(channel){
+
+chatChannels.push(channel)
+
+channel.onmessage = e=>{
+
+let box = document.getElementById("chatBox")
+
+box.innerHTML += `<div><b>Peer:</b> ${e.data}</div>`
+
+box.scrollTop = box.scrollHeight
+
+}
+
+}
+
+
+function sendMessage(){
+
+let input = document.getElementById("chatInput")
+
+let msg = input.value.trim()
+
+if(!msg) return
+
+
+let sent = false;
+
+chatChannels.forEach(channel => {
+
+if(channel.readyState === "open"){
+
+channel.send(msg)
+
+sent = true;
+
+}
+
+})
+
+
+if(sent){
+
+let box = document.getElementById("chatBox")
+
+box.innerHTML += `<div style="color:green"><b>Bạn:</b> ${msg}</div>`
+
+box.scrollTop = box.scrollHeight
+
+}
+
+
+input.value=""
+
+}
+
+
+</script>
+
+
+</body>
+
+</html>
+
